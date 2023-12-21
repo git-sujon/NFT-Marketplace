@@ -5,14 +5,18 @@ import OutlinedButton from "../UI/OutlinedButton";
 import { GiHamburgerMenu } from "react-icons/gi";
 const Navbar = () => {
   return (
-    <header className="bg-white">
+    <header className="bg-white border-b ">
       <div className="mx-auto max-w-screen-2xl px-4 lg:px-16">
-        <div className="flex h-16 items-center justify-between">
-          <div className="md:flex md:items-center md:gap-12">
+        <div className="flex h-16 items-center justify-between ">
+          {/* Brand Name  */}
+
+          <div className="font-black">
             <Link className="block text-primary font-black text-2xl" href="/">
               NFTERS
             </Link>
           </div>
+
+          {/* Menus  */}
 
           <div className="hidden md:block">
             <nav aria-label="Global">
@@ -46,20 +50,23 @@ const Navbar = () => {
                     About{" "}
                   </Link>
                 </li>
-
-                <SearchBar />
               </ul>
             </nav>
           </div>
 
-          <div className="flex items-center gap-4">
-            <div className="flex gap-4">
+          {/* search and actions  */}
+
+          <div className="hidden md:block">
+            <div className="flex justify-center items-center gap-4 ">
+              <SearchBar />
               <SolidButton name="Upload" url="/" />
 
               <OutlinedButton name="Connect Wallet" url="/" />
             </div>
+          </div>
 
-            <div className="block md:hidden">
+          <div className="flex items-center gap-4 md:hidden">
+            <div className="block ">
               <button className=" hover:text-primary/75">
                 <GiHamburgerMenu />
               </button>

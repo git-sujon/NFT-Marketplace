@@ -2,7 +2,7 @@ import { CiSearch } from "react-icons/ci";
 
 const SearchBar = () => {
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-4 ">
       <div className="relative">
         <label className="sr-only" htmlFor="search">
           {" "}
@@ -10,7 +10,7 @@ const SearchBar = () => {
         </label>
 
         <input
-          className="h-10 w-full rounded-full border-none bg-white pe-10 ps-4 text-sm shadow-sm sm:w-56 outline-primary"
+          className="h-10 w-full rounded-full  bg-white pe-10 ps-4 text-sm shadow-sm sm:w-56  border border-slate-200 "
           id="search"
           type="search"
           placeholder="Search"

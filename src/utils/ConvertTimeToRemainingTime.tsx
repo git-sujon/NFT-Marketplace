@@ -1,23 +1,40 @@
-"use client"
+"use client";
+import { useEffect, useState } from "react";
 
-export const  convertBidEndTimeToRemainingTime = (timestamp: string) => {
-  // Parse the timestamp string to a Date object
-  const endTime = new Date(timestamp) as Date;
+const ConvertBidEndTimeToRemainingTime = ({
+  bidEndTime,
+}: {
+  bidEndTime: string;
+}) => {
+  const [remainingTime, setRemainingTime] = useState("");
 
-  // Get the current time
-  const now = new Date();
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      const now = new Date();
+      const endTime = new Date(bidEndTime);
 
-  // Calculate the difference in milliseconds
-  const timeDifference = endTime.getTime() - now.getTime();
+      // Check if bidding has ended
+      if (now > endTime) {
+        setRemainingTime("Bidding ended");
+        clearInterval(intervalId);
+        return;
+      }
 
-  // Convert milliseconds to hours, minutes, and seconds
-  const hours = Math.floor(timeDifference / (1000 * 60 * 60));
-  const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+      const timeDifference = endTime.getTime() - now.getTime();
 
-  // Create the formatted string
-  const formattedTime = `${hours}h ${minutes}m ${seconds}s`;
+      const hours = Math.floor(timeDifference / (1000 * 60 * 60));
+      const minutes = Math.floor(
+        (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
+      );
+      const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
-  return formattedTime;
-}
+      setRemainingTime(`${hours}h ${minutes}m ${seconds}s`);
+    }, 1000);
 
+    return () => clearInterval(intervalId);
+  }, [bidEndTime]);
+
+  return <p className="text-xl font-bold">{remainingTime}</p>;
+};
+
+export default ConvertBidEndTimeToRemainingTime;

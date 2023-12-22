@@ -10,12 +10,11 @@ import { FaEthereum } from "react-icons/fa";
 import { EffectCards } from "swiper/modules";
 import { nftData } from "@/constants/swiperData";
 import Image from "next/image";
-import { convertBidEndTimeToRemainingTime } from "@/utils/ConvertTimeToRemainingTime";
-
+import ConvertBidEndTimeToRemainingTime from "@/utils/ConvertTimeToRemainingTime";
 
 const SwiperImages = () => {
   return (
-    <>
+    <div className="mt-10 lg:mt-0">
       <Swiper
         effect={"cards"}
         grabCursor={true}
@@ -53,9 +52,9 @@ const SwiperImages = () => {
                   <div className="flex flex-col gap-y-1">
                     <h6 className="font-bold text-base">Ends in</h6>
                     <div className="flex items-center gap-x-1">
-                      <p className="text-xl font-bold">
-                        {convertBidEndTimeToRemainingTime(nftInfo.bidEndTime)}
-                      </p>
+                      <ConvertBidEndTimeToRemainingTime
+                        bidEndTime={nftInfo.bidEndTime}
+                      />
                     </div>
                   </div>
                 </div>
@@ -64,7 +63,7 @@ const SwiperImages = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </>
+    </div>
   );
 };
 
